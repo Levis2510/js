@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <h1>----X.O----</h1>
+    <div id="scoreboard">
+        <div id="member">
+            <p>X Wins: <span id="xScore">0</span></p>
+            <p>O Wins: <span id="oScore">0</span></p>
+        </div>
+        <button onclick="resetScore()" id="resetScore">Reset Score</button>
+    </div>
     <div class="container">
         <table>
             <tr>
@@ -30,7 +38,7 @@
     </div>
     <div class="message" id="message"></div>
     <div class="controls">
-        <button onclick="resetBoard()">Play</button>
+        <button onclick="resetBoard()">PLAY</button>
     </div>
     <script src="script.js" defer></script>
 </body>
