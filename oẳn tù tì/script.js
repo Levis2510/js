@@ -5,6 +5,13 @@ const playButton = document.querySelector(".btn");
 const optionImages = document.querySelectorAll(".options");
 
 const choices = ["rock", "paper", "scissors"];
+let YouWins = parseInt(localStorage.getItem("YouWins")) || 0;
+let PcWins = parseInt(localStorage.getItem("PcWins")) || 0;
+
+const xScoreEl = document.getElementById("userScore");
+const oScoreEl = document.getElementById("pcScore");
+xScoreEl.textContent = YouWins;
+oScoreEl.textContent = PcWins;
 
 optionImages.forEach((Image) => {
     Image.addEventListener("click", () => {
@@ -17,10 +24,8 @@ optionImages.forEach((Image) => {
         userResult.src = `img/${userChoice}.png`;
         resultText.textContent = "Đang chọn...";
 
-
         userResult.classList.add("shake");
         npcResult.classList.add("shake");
-
 
         setTimeout(() => {
             userResult.classList.remove("shake");
@@ -37,17 +42,29 @@ optionImages.forEach((Image) => {
                 (userChoice === "paper" && npcChoice === "rock")
             ) {
                 resultText.textContent = "Bạn thắng!";
+                YouWins++;
+                localStorage.setItem("YouWins", YouWins);
+                xScoreEl.textContent = YouWins;
             } else {
                 resultText.textContent = "Máy thắng!";
+                PcWins++;
+                localStorage.setItem("PcWins", PcWins);
+                oScoreEl.textContent = PcWins;
             }
 
-        }, 700);
+        }, 900);
     });
 });
 
 playButton.addEventListener("click", () => {
     userResult.src = "img/question.png";
     npcResult.src = "img/question.png";
-    resultText.textContent = "Hãy chọn Rock, Sissors hoặc Paper!";
+    resultText.textContent = "Hãy chọn Rock, Scissors hoặc Paper!";
     optionImages.forEach(option => option.classList.remove("active"));
+    YouWins = 0;
+    PcWins = 0;
+    localStorage.setItem("YouWins", 0);
+    localStorage.setItem("PcWins", 0);
+    xScoreEl.textContent = 0;
+    oScoreEl.textContent = 0;
 });
